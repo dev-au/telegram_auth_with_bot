@@ -30,14 +30,13 @@ async def receive_contact(message: Message):
 async def echo_handler(message: Message):
     user = await User.get_or_none(telegram_id=message.from_user.id)
     if user:
-        await message.answer('df')
-        return
+        return await message.answer('You have already registered!')
     answer_keyboard = ReplyKeyboardMarkup(keyboard=[
         [
-            KeyboardButton(text='Raqam yuborish', request_contact=True)
+            KeyboardButton(text='Send phone number', request_contact=True)
         ]
     ], resize_keyboard=True)
-    await message.answer('Assalomu alaykum ro\'yxatdan o\'tish uchun telefon raqamingizni bering.',
+    await message.answer('Hi! Give me your phon number',
                          reply_markup=answer_keyboard)
 
 
